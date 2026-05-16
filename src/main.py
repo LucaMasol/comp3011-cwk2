@@ -1,11 +1,10 @@
-from __future__ import annotations
-
 import shlex
 from dataclasses import dataclass
 from typing import Callable
 
 from crawler import crawl_site
 from indexer import InvertedIndex, build_index, load_index, save_index
+from search import find_pages, format_index_entry, format_search_results
 
 PROMPT = "> "
 current_index: InvertedIndex | None = None
@@ -108,8 +107,12 @@ def handle_print(args: list[str]) -> None:
     print("Usage: print <word>")
     return
 
+  if current_index is None:
+    print("No index loaded. Run build or load first.")
+    return
+
   word = args[0]
-  pass
+  print(format_index_entry(current_index, word))
 
 
 def handle_find(args: list[str]) -> None:
@@ -117,8 +120,14 @@ def handle_find(args: list[str]) -> None:
     print("Usage: find <string>")
     return
 
+  if current_index is None:
+    print("No index loaded. Run build or load first.")
+    return
+
   query = " ".join(args)
-  pass
+  results = find_pages(current_index, query)
+
+  print(format_search_results(results, query))
 
 
 def print_help() -> None:
