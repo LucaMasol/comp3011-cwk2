@@ -29,7 +29,7 @@ def find_pages(index: InvertedIndex, query: str) -> list[SearchResult]:
 
     matching_page_sets.append(set(word_entry.keys()))
 
-  # Keep only pages that contain each word in arguements (intersection / AND statement)
+  # Keep only pages that contain each word in arguments (intersection / AND statement)
   matching_pages = set.intersection(*matching_page_sets)
   results: list[SearchResult] = []
 
