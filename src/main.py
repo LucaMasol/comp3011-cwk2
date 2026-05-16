@@ -86,9 +86,10 @@ def handle_load(args: list[str]) -> None:
     print("Usage: load")
     return
 
-
   current_index = load_index()
+
   if current_index is None:
+    print("Could not load index. Run the build command first.")
     return
 
   page_urls = {
@@ -97,7 +98,7 @@ def handle_load(args: list[str]) -> None:
     for page_url in word_entry
   }
 
-  print(f"Loaded index from data/index.json.")
+  print("Loaded index from data/index.json.")
   print(f"Indexed words: {len(current_index)}")
   print(f"Indexed pages: {len(page_urls)}")
 

@@ -52,16 +52,14 @@ def save_index(index: InvertedIndex, file_path: Path = INDEX_FILE_PATH) -> None:
     json.dump(index, index_file, indent=2, sort_keys=True)
 
 
-def load_index(file_path: Path = INDEX_FILE_PATH) -> InvertedIndex:
+def load_index(file_path: Path = INDEX_FILE_PATH) -> InvertedIndex | None:
   if not file_path.exists():
-    print(f"Index file not found at {file_path}. Run the build command first.")
     return None
 
   try:
     with file_path.open("r", encoding="utf-8") as index_file:
       loaded_index: Any = json.load(index_file)
   except json.JSONDecodeError:
-    print(f"Index file at {file_path} is empty or invalid. Run the build command first.")
     return None
 
   return loaded_index
