@@ -4,7 +4,11 @@ import shlex
 from dataclasses import dataclass
 from typing import Callable
 
+from crawler import crawl_site
+from indexer import InvertedIndex, build_index, load_index, save_index
+
 PROMPT = "> "
+current_index: InvertedIndex | None = None
 
 @dataclass(frozen=True)
 class ParsedCommand:
@@ -33,19 +37,69 @@ def parse_command(raw_input: str) -> ParsedCommand | None:
 
 
 def handle_build(args: list[str]) -> None:
-  if args and args != ["-v"]:
-    print("Usage: build [-v]")
+  global current_index
+
+  verbose = False
+  max_pages = None
+
+  if len(args) > 2:
+    print("Usage: build [maxPages] [-v]")
     return
 
-  pass
+  for arg in args:
+    if arg == "-v":
+      if verbose:
+        print("Usage: build [maxPages] [-v]")
+        return
+      verbose = True
+      continue
+
+    if max_pages is not None:
+      print("Usage: build [maxPages] [-v]")
+      return
+
+    try:
+      parsed_max_pages = int(arg)
+    except ValueError:
+      print("Usage: build [maxPages] [-v]")
+      return
+
+    if parsed_max_pages <= 0:
+      print("Usage: build [maxPages] [-v]")
+      return
+
+    max_pages = parsed_max_pages
+
+  print("Crawling website and extracting page text...")
+
+  pages = crawl_site(verbose=verbose, max_pages=max_pages)
+  current_index = build_index(pages)
+  save_index(current_index)
+
+  print(f"Crawled {len(pages)} pages and saved index to data/index.json.")
 
 
 def handle_load(args: list[str]) -> None:
+  global current_index
+
   if args:
     print("Usage: load")
     return
 
-  pass
+
+  current_index = load_index()
+  if current_index is None:
+    return
+
+  page_urls = {
+    page_url
+    for word_entry in current_index.values()
+    for page_url in word_entry
+  }
+
+  print(f"Loaded index from data/index.json.")
+  print(f"Indexed words: {len(current_index)}")
+  print(f"Indexed pages: {len(page_urls)}")
 
 
 def handle_print(args: list[str]) -> None:
