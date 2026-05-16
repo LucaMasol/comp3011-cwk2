@@ -86,12 +86,9 @@ def handle_load(args: list[str]) -> None:
     print("Usage: load")
     return
 
-  try:
-    current_index = load_index()
-  except FileNotFoundError as error:
-    print(f"Error: {error}")
-    return
-  if not current_index:
+
+  current_index = load_index()
+  if current_index is None:
     return
 
   page_urls = {

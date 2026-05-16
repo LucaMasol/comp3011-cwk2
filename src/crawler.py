@@ -10,13 +10,13 @@ import requests
 from bs4 import BeautifulSoup
 
 BASE_URL = "https://quotes.toscrape.com/"
-POLITENESS_DELAY_SECONDS = 1.0 # For testing. Change to 6.0
+POLITENESS_DELAY_SECONDS = 6.0
 REQUEST_TIMEOUT_SECONDS = 10
 
 
 @dataclass(frozen=True)
 class CrawledPage:
-  """Text and ULR of a crawled page"""
+  """Text and URL of a crawled page"""
   url: str
   text: str
 
