@@ -117,7 +117,7 @@ def handle_print(args: list[str]) -> None:
 
 def handle_find(args: list[str]) -> None:
   if not args:
-    print("Usage: find <string>")
+    print("Usage: find <word> [word ...]")
     return
 
   if current_index is None:
@@ -135,7 +135,7 @@ def print_help() -> None:
   print("  build                  #  Build and store inverted index to ./data/index.json")
   print("  load                   #  Load inverted index from ./data/index.json")
   print("  print <word>           #  Print the index entry for a word")
-  print("  find <word> [word ...] #  Find pages matching a string")
+  print("  find <word> [word ...] #  Find pages matching a list of words")
   print("  help                   #  Show commands and their usage")
   print("  exit | quit            #  Exit shell")
 
