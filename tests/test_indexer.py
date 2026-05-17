@@ -12,7 +12,7 @@ from indexer import build_index, get_index_entry, load_index, save_index, tokeni
 
 class TestIndexer(unittest.TestCase):
   def test_tokenise_lowercases_words(self) -> None:
-    # GIVEN a string with mixed case words
+    # GIVEN a list of words with mixed case words
     # WHEN tokenise is called
     tokens = tokenise("Good FRIENDS are good.")
     # THEN all words are lowercased
