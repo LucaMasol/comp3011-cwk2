@@ -22,13 +22,15 @@ To find coverage of tests, run:
 1. `py -m coverage run --source=src -m unittest discover tests`
 2. `py -m coverage report -m`
 
-Coverage results from previous testing:
+Example coverage results from previous testing:
 | File | Statements | Miss | Coverage | Notes|
 | --- | --- | --- | --- | --- |
-| `src\crawler.py` | 91  | 1   | 99% | Remaining uncovered line is a defense against URL-handling, which is difficult to reach in testing |
-| `src\indexer.py` | 40  | 0   | 100% |  |
-| `src\search.py`  | 53  | 0   | 100% |  |
-| __TOTAL__ | __184__ | __1__ | __99%__ | `src/main.py` not coverage in tests, as not relevant to units and is instead simply the interface |
+| `src/crawler.py` | 91  | 1   | 99% | Remaining uncovered line is a defense against URL-handling, which is difficult to reach in testing |
+| `src/indexer.py` | 40  | 0   | 100% |  |
+| `src/search.py`  | 53  | 0   | 100% |  |
+| __TOTAL__ | __184__ | __1__ | __99%__ | `src/main.py` not covered in tests, as not relevant to units and is instead simply the interface |
+
+Coverage results will change as the codebase changes, though this was updated on last commit.
 
 
 ### Crawler
