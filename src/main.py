@@ -132,12 +132,12 @@ def handle_find(args: list[str]) -> None:
 
 def print_help() -> None:
   print("Available commands:")
-  print("  build                  #  Build and store inverted index to ./data/index.json")
-  print("  load                   #  Load inverted index from ./data/index.json")
-  print("  print <word>           #  Print the index entry for a word")
-  print("  find <word> [word ...] #  Find pages matching a list of words")
-  print("  help                   #  Show commands and their usage")
-  print("  exit | quit            #  Exit shell")
+  print("  build <maximum pages> [-v] #  Build and store inverted index to ./data/index.json")
+  print("  load                       #  Load inverted index from ./data/index.json")
+  print("  print <word>               #  Print the index entry for a word")
+  print("  find <word> [word ...]     #  Find pages matching a list of words")
+  print("  help                       #  Show commands and their usage")
+  print("  exit | quit                #  Exit shell")
 
 
 CommandHandler = Callable[[list[str]], None]

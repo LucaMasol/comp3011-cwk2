@@ -160,7 +160,7 @@ The search tool uses case-insensitive tokenisation and full-word matching, meani
 The scraper tool is designed for the site structure of https://quotes.toscrape.com/, rather than arbitrary websites. It uses specific element tags in the HTML of the site to find meaningful data, which would not transfer well to other external sites without change to the code.
 
 ## Use of Generative AI
-Generative AI tools were used throughout development as given in the coursework specification.
+Generative AI tools were used throughout development as given in the coursework specification. It influenced most aspects of the application, though this was not without proper checks made on its outputs.
 
 Generative AI was used for:
 * Problem understanding of distinct areas to focus on such that development would be incremental
@@ -171,6 +171,7 @@ Generative AI was used for:
 * Debugging logical and runtime errors
 * AI code reviews at the code repository before merging to the main branch (essentially treated as a pair programmer)
 * Proof reading and refactoring of language/ structure of README.md
+* Planning structure of video demonstration
 
 The generative AI tools used were:
 * ChatGPT - OpenAI. (2026). ChatGPT Large Language Model. Available at https://chat.openai.com/
